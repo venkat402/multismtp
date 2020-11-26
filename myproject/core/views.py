@@ -10,10 +10,6 @@ class Index(EmailMixin, TemplateView):
     email_template_name = 'email.html'
 
     def get_context_data(self, **kwargs):
-        """
-        Método para pegar o formulário e os dados submetidos.
-        Nota - Customize a estrutura de seu email no arquivo email.html
-        """
         context = super(Index, self).get_context_data(**kwargs)
         form = EmailForm()
         # data example

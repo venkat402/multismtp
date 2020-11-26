@@ -14,9 +14,6 @@ class EmailMixin:
     email_subject = ''
 
     def send_mail(self):
-        """
-        Método para envio de email seguindo padrão send_mail do Django.
-        """
         subject = self.email_subject
         from_ = self.email_from
         to = self.get_email_to()
@@ -64,14 +61,14 @@ def get_connection(label=None, **kwargs):
     options.update(kwargs)
     return django.core.mail.get_connection(**options)
 
-
+# basic smtp
 def smtpBackend(subject, body, from_, to):
     # SMTP backend
     smtp_backend = get_connection('django.core.mail.backends.smtp.EmailBackend')
     return send_mail(subject, body, from_, [to],
                      connection=smtp_backend)
 
-
+# sendgrid
 def sendGridBackend(subject, body, from_, to):
     # Send grid
     sendgrid_backend = get_connection('anymail.backends.sendgrid.EmailBackend', api_key="asdfsadfl")
